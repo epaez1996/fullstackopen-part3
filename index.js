@@ -1,7 +1,11 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const morgan = require('morgan')
 
+
+app.use(cors())
+app.use(express.static('build'))
 app.use(express.json())
 
 morgan.token('postdata', (request, response) => {
@@ -31,10 +35,6 @@ let persons = [
         number: "39-23-6423122"
     }
 ]
-
-app.get('/', (request, response) => {
-    response.send('<h1>Hello there</h1>')
-})
 
 app.get('/info', (request, response) => {
     const requestTime = new Date()
